@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import type { ProjectVisual } from "@/data/projects";
 import { projects } from "@/data/projects";
@@ -21,9 +21,9 @@ function Nav() {
           <img src={logoImg} alt="BUTA Group" className="h-10 w-auto" />
         </Link>
         <nav className="hidden md:flex items-center gap-10 text-sm text-foreground/80">
-          <Link to="/" hash="projects" className="hover:text-primary transition-colors">{t.nav.projects}</Link>
-          <Link to="/" hash="philosophy" className="hover:text-primary transition-colors">{t.nav.philosophy}</Link>
-          <Link to="/" hash="contact" className="hover:text-primary transition-colors">{t.nav.contact}</Link>
+          <Link to="/#projects" className="hover:text-primary transition-colors">{t.nav.projects}</Link>
+          <Link to="/#philosophy" className="hover:text-primary transition-colors">{t.nav.philosophy}</Link>
+          <Link to="/#contact" className="hover:text-primary transition-colors">{t.nav.contact}</Link>
         </nav>
         <div className="flex items-center gap-6">
           <LanguageSwitcher />
@@ -87,7 +87,7 @@ export function ProjectPage({ project }: { project: ProjectVisual }) {
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground mb-10">
             <Link to="/" className="hover:text-primary transition-colors">{t.page.crumbHome}</Link>
             <span>·</span>
-            <Link to="/" hash="projects" className="hover:text-primary transition-colors">{t.page.crumbProjects}</Link>
+            <Link to="/#projects" className="hover:text-primary transition-colors">{t.page.crumbProjects}</Link>
             <span>·</span>
             <span className="text-primary">{project.name}</span>
           </div>
