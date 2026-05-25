@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-architecture.jpg";
 import philosophyImg from "@/assets/philosophy.jpg";
+import logoImg from "@/assets/buta-logo.jpg";
 import { projects } from "@/data/projects";
 
 export const Route = createFileRoute("/")({
@@ -18,9 +19,8 @@ function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/40 border-b border-border/40">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-        <a href="#" className="flex items-baseline gap-1.5">
-          <span className="font-display text-3xl tracking-tight text-foreground">BUTA</span>
-          <span className="eyebrow text-[0.6rem] text-muted-foreground">group</span>
+        <a href="#" className="flex items-center" aria-label="BUTA Group">
+          <img src={logoImg} alt="BUTA Group" className="h-10 w-auto mix-blend-multiply" />
         </a>
         <nav className="hidden md:flex items-center gap-10 text-sm text-foreground/80">
           <a href="#projects" className="hover:text-primary transition-colors">Проекты</a>
@@ -278,9 +278,9 @@ function Footer() {
   return (
     <footer className="border-t border-border py-12">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest text-muted-foreground">
-        <div className="flex items-baseline gap-1.5">
-          <span className="font-display text-xl text-foreground normal-case tracking-tight">BUTA</span>
-          <span>group · est. 2014</span>
+        <div className="flex items-center gap-3">
+          <img src={logoImg} alt="BUTA Group" className="h-8 w-auto mix-blend-multiply" />
+          <span>est. 2014</span>
         </div>
         <div>© 2026 BUTA Group. Все права защищены.</div>
         <div className="flex gap-6">
