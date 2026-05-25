@@ -1,53 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-architecture.jpg";
 import philosophyImg from "@/assets/philosophy.jpg";
-import fenomenImg from "@/assets/project-fenomen.jpg";
-import albionImg from "@/assets/project-albion.jpg";
-import legendImg from "@/assets/project-legend.jpg";
-import miraiImg from "@/assets/project-mirai.jpg";
+import { projects } from "@/data/projects";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const projects = [
-  {
-    id: "01",
-    name: "Fenomen",
-    tier: "Комфорт",
-    price: "от 30,6 млн ₸",
-    location: "мкр. Нуркент, 9 к 12",
-    status: "Сдача 3 очереди — II кв. 2026",
-    img: fenomenImg,
-  },
-  {
-    id: "02",
-    name: "Albion",
-    tier: "Комфорт",
-    price: "от 22,8 млн ₸",
-    location: "мкр. Кайрат, 377",
-    status: "Сдача 1 очереди — II кв. 2026",
-    img: albionImg,
-  },
-  {
-    id: "03",
-    name: "Legend",
-    tier: "Комфорт",
-    price: "от 27 млн ₸",
-    location: "пр. Турара Рыскулова, 103/7",
-    status: "Введён в эксплуатацию",
-    img: legendImg,
-  },
-  {
-    id: "04",
-    name: "Mirai",
-    tier: "Комфорт",
-    price: "от 21,3 млн ₸",
-    location: "Алатауская трасса, 30",
-    status: "Сдача 1 очереди — II кв. 2026",
-    img: miraiImg,
-  },
-];
+const projectPaths = {
+  fenomen: "/projects/fenomen",
+  albion: "/projects/albion",
+  legend: "/projects/legend",
+  mirai: "/projects/mirai",
+} as const;
 
 function Nav() {
   return (
@@ -197,13 +162,14 @@ function Projects() {
 
         <div className="grid md:grid-cols-2 gap-x-10 gap-y-20">
           {projects.map((p, i) => (
-            <article
+            <Link
               key={p.id}
-              className={`group ${i % 2 === 1 ? "md:mt-24" : ""}`}
+              to={projectPaths[p.slug]}
+              className={`group block ${i % 2 === 1 ? "md:mt-24" : ""}`}
             >
               <div className="relative aspect-[4/5] overflow-hidden mb-6">
                 <img
-                  src={p.img}
+                  src={p.cover}
                   alt={`Жилой комплекс BUTA ${p.name}`}
                   loading="lazy"
                   width={1280}
@@ -214,9 +180,12 @@ function Projects() {
                   {p.tier}
                 </div>
                 <div className="absolute top-5 right-5 font-display text-parchment/60 text-sm">— {p.id}</div>
+                <div className="absolute bottom-5 right-5 text-[0.65rem] uppercase tracking-[0.3em] text-parchment opacity-0 group-hover:opacity-100 transition-opacity">
+                  Открыть →
+                </div>
               </div>
               <div className="flex items-baseline justify-between gap-6">
-                <h3 className="font-display text-4xl lg:text-5xl">
+                <h3 className="font-display text-4xl lg:text-5xl group-hover:text-primary transition-colors">
                   BUTA <span className="italic text-primary">{p.name}</span>
                 </h3>
                 <div className="text-right font-display text-xl text-foreground whitespace-nowrap">{p.price}</div>
@@ -226,7 +195,7 @@ function Projects() {
                 <span>{p.location}</span>
                 <span className="text-primary/80">{p.status}</span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

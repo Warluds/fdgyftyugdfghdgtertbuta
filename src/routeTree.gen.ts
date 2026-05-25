@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsMiraiRouteImport } from './routes/projects.mirai'
+import { Route as ProjectsLegendRouteImport } from './routes/projects.legend'
+import { Route as ProjectsFenomenRouteImport } from './routes/projects.fenomen'
+import { Route as ProjectsAlbionRouteImport } from './routes/projects.albion'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsMiraiRoute = ProjectsMiraiRouteImport.update({
+  id: '/projects/mirai',
+  path: '/projects/mirai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsLegendRoute = ProjectsLegendRouteImport.update({
+  id: '/projects/legend',
+  path: '/projects/legend',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsFenomenRoute = ProjectsFenomenRouteImport.update({
+  id: '/projects/fenomen',
+  path: '/projects/fenomen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsAlbionRoute = ProjectsAlbionRouteImport.update({
+  id: '/projects/albion',
+  path: '/projects/albion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/projects/albion': typeof ProjectsAlbionRoute
+  '/projects/fenomen': typeof ProjectsFenomenRoute
+  '/projects/legend': typeof ProjectsLegendRoute
+  '/projects/mirai': typeof ProjectsMiraiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/projects/albion': typeof ProjectsAlbionRoute
+  '/projects/fenomen': typeof ProjectsFenomenRoute
+  '/projects/legend': typeof ProjectsLegendRoute
+  '/projects/mirai': typeof ProjectsMiraiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/projects/albion': typeof ProjectsAlbionRoute
+  '/projects/fenomen': typeof ProjectsFenomenRoute
+  '/projects/legend': typeof ProjectsLegendRoute
+  '/projects/mirai': typeof ProjectsMiraiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/projects/albion'
+    | '/projects/fenomen'
+    | '/projects/legend'
+    | '/projects/mirai'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/projects/albion'
+    | '/projects/fenomen'
+    | '/projects/legend'
+    | '/projects/mirai'
+  id:
+    | '__root__'
+    | '/'
+    | '/projects/albion'
+    | '/projects/fenomen'
+    | '/projects/legend'
+    | '/projects/mirai'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProjectsAlbionRoute: typeof ProjectsAlbionRoute
+  ProjectsFenomenRoute: typeof ProjectsFenomenRoute
+  ProjectsLegendRoute: typeof ProjectsLegendRoute
+  ProjectsMiraiRoute: typeof ProjectsMiraiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +104,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/mirai': {
+      id: '/projects/mirai'
+      path: '/projects/mirai'
+      fullPath: '/projects/mirai'
+      preLoaderRoute: typeof ProjectsMiraiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/legend': {
+      id: '/projects/legend'
+      path: '/projects/legend'
+      fullPath: '/projects/legend'
+      preLoaderRoute: typeof ProjectsLegendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/fenomen': {
+      id: '/projects/fenomen'
+      path: '/projects/fenomen'
+      fullPath: '/projects/fenomen'
+      preLoaderRoute: typeof ProjectsFenomenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/albion': {
+      id: '/projects/albion'
+      path: '/projects/albion'
+      fullPath: '/projects/albion'
+      preLoaderRoute: typeof ProjectsAlbionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProjectsAlbionRoute: ProjectsAlbionRoute,
+  ProjectsFenomenRoute: ProjectsFenomenRoute,
+  ProjectsLegendRoute: ProjectsLegendRoute,
+  ProjectsMiraiRoute: ProjectsMiraiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
