@@ -3,6 +3,13 @@ import { useState } from "react";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
 
+const projectPaths = {
+  fenomen: "/projects/fenomen",
+  albion: "/projects/albion",
+  legend: "/projects/legend",
+  mirai: "/projects/mirai",
+} as const;
+
 function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/60 border-b border-border/40">
@@ -157,8 +164,7 @@ export function ProjectPage({ project }: { project: Project }) {
             {others.map((p) => (
               <Link
                 key={p.slug}
-                to="/projects/$slug"
-                params={{ slug: p.slug }}
+                to={projectPaths[p.slug]}
                 className="group"
               >
                 <div className="relative aspect-[4/5] overflow-hidden mb-5">
