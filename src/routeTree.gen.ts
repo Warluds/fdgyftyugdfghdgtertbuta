@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsMiraiRouteImport } from './routes/projects.mirai'
 import { Route as ProjectsLegendRouteImport } from './routes/projects.legend'
 import { Route as ProjectsFenomenRouteImport } from './routes/projects.fenomen'
 import { Route as ProjectsAlbionRouteImport } from './routes/projects.albion'
@@ -17,6 +18,11 @@ import { Route as ProjectsAlbionRouteImport } from './routes/projects.albion'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsMiraiRoute = ProjectsMiraiRouteImport.update({
+  id: '/projects/mirai',
+  path: '/projects/mirai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsLegendRoute = ProjectsLegendRouteImport.update({
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/projects/albion': typeof ProjectsAlbionRoute
   '/projects/fenomen': typeof ProjectsFenomenRoute
   '/projects/legend': typeof ProjectsLegendRoute
+  '/projects/mirai': typeof ProjectsMiraiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/projects/albion': typeof ProjectsAlbionRoute
   '/projects/fenomen': typeof ProjectsFenomenRoute
   '/projects/legend': typeof ProjectsLegendRoute
+  '/projects/mirai': typeof ProjectsMiraiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,18 +61,30 @@ export interface FileRoutesById {
   '/projects/albion': typeof ProjectsAlbionRoute
   '/projects/fenomen': typeof ProjectsFenomenRoute
   '/projects/legend': typeof ProjectsLegendRoute
+  '/projects/mirai': typeof ProjectsMiraiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects/albion' | '/projects/fenomen' | '/projects/legend'
+  fullPaths:
+    | '/'
+    | '/projects/albion'
+    | '/projects/fenomen'
+    | '/projects/legend'
+    | '/projects/mirai'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects/albion' | '/projects/fenomen' | '/projects/legend'
+  to:
+    | '/'
+    | '/projects/albion'
+    | '/projects/fenomen'
+    | '/projects/legend'
+    | '/projects/mirai'
   id:
     | '__root__'
     | '/'
     | '/projects/albion'
     | '/projects/fenomen'
     | '/projects/legend'
+    | '/projects/mirai'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -72,6 +92,7 @@ export interface RootRouteChildren {
   ProjectsAlbionRoute: typeof ProjectsAlbionRoute
   ProjectsFenomenRoute: typeof ProjectsFenomenRoute
   ProjectsLegendRoute: typeof ProjectsLegendRoute
+  ProjectsMiraiRoute: typeof ProjectsMiraiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -81,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/mirai': {
+      id: '/projects/mirai'
+      path: '/projects/mirai'
+      fullPath: '/projects/mirai'
+      preLoaderRoute: typeof ProjectsMiraiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/legend': {
@@ -112,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsAlbionRoute: ProjectsAlbionRoute,
   ProjectsFenomenRoute: ProjectsFenomenRoute,
   ProjectsLegendRoute: ProjectsLegendRoute,
+  ProjectsMiraiRoute: ProjectsMiraiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
