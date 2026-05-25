@@ -1,53 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-architecture.jpg";
 import philosophyImg from "@/assets/philosophy.jpg";
-import fenomenImg from "@/assets/project-fenomen.jpg";
-import albionImg from "@/assets/project-albion.jpg";
-import legendImg from "@/assets/project-legend.jpg";
-import miraiImg from "@/assets/project-mirai.jpg";
+import { projects } from "@/data/projects";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const projects = [
-  {
-    id: "01",
-    name: "Fenomen",
-    tier: "Комфорт",
-    price: "от 30,6 млн ₸",
-    location: "мкр. Нуркент, 9 к 12",
-    status: "Сдача 3 очереди — II кв. 2026",
-    img: fenomenImg,
-  },
-  {
-    id: "02",
-    name: "Albion",
-    tier: "Комфорт",
-    price: "от 22,8 млн ₸",
-    location: "мкр. Кайрат, 377",
-    status: "Сдача 1 очереди — II кв. 2026",
-    img: albionImg,
-  },
-  {
-    id: "03",
-    name: "Legend",
-    tier: "Комфорт",
-    price: "от 27 млн ₸",
-    location: "пр. Турара Рыскулова, 103/7",
-    status: "Введён в эксплуатацию",
-    img: legendImg,
-  },
-  {
-    id: "04",
-    name: "Mirai",
-    tier: "Комфорт",
-    price: "от 21,3 млн ₸",
-    location: "Алатауская трасса, 30",
-    status: "Сдача 1 очереди — II кв. 2026",
-    img: miraiImg,
-  },
-];
+const projectPaths = {
+  fenomen: "/projects/fenomen",
+  albion: "/projects/albion",
+  legend: "/projects/legend",
+  mirai: "/projects/mirai",
+} as const;
 
 function Nav() {
   return (
