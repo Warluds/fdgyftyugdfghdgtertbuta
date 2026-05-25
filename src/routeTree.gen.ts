@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsFenomenRouteImport } from './routes/projects.fenomen'
+import { Route as ProjectsAlbionRouteImport } from './routes/projects.albion'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const ProjectsFenomenRoute = ProjectsFenomenRouteImport.update({
   path: '/projects/fenomen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsAlbionRoute = ProjectsAlbionRouteImport.update({
+  id: '/projects/albion',
+  path: '/projects/albion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/projects/albion': typeof ProjectsAlbionRoute
   '/projects/fenomen': typeof ProjectsFenomenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/projects/albion': typeof ProjectsAlbionRoute
   '/projects/fenomen': typeof ProjectsFenomenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/projects/albion': typeof ProjectsAlbionRoute
   '/projects/fenomen': typeof ProjectsFenomenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects/fenomen'
+  fullPaths: '/' | '/projects/albion' | '/projects/fenomen'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects/fenomen'
-  id: '__root__' | '/' | '/projects/fenomen'
+  to: '/' | '/projects/albion' | '/projects/fenomen'
+  id: '__root__' | '/' | '/projects/albion' | '/projects/fenomen'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProjectsAlbionRoute: typeof ProjectsAlbionRoute
   ProjectsFenomenRoute: typeof ProjectsFenomenRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsFenomenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/albion': {
+      id: '/projects/albion'
+      path: '/projects/albion'
+      fullPath: '/projects/albion'
+      preLoaderRoute: typeof ProjectsAlbionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProjectsAlbionRoute: ProjectsAlbionRoute,
   ProjectsFenomenRoute: ProjectsFenomenRoute,
 }
 export const routeTree = rootRouteImport
