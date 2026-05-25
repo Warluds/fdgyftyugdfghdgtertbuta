@@ -162,13 +162,14 @@ function Projects() {
 
         <div className="grid md:grid-cols-2 gap-x-10 gap-y-20">
           {projects.map((p, i) => (
-            <article
+            <Link
               key={p.id}
-              className={`group ${i % 2 === 1 ? "md:mt-24" : ""}`}
+              to={projectPaths[p.slug]}
+              className={`group block ${i % 2 === 1 ? "md:mt-24" : ""}`}
             >
               <div className="relative aspect-[4/5] overflow-hidden mb-6">
                 <img
-                  src={p.img}
+                  src={p.cover}
                   alt={`Жилой комплекс BUTA ${p.name}`}
                   loading="lazy"
                   width={1280}
@@ -179,9 +180,12 @@ function Projects() {
                   {p.tier}
                 </div>
                 <div className="absolute top-5 right-5 font-display text-parchment/60 text-sm">— {p.id}</div>
+                <div className="absolute bottom-5 right-5 text-[0.65rem] uppercase tracking-[0.3em] text-parchment opacity-0 group-hover:opacity-100 transition-opacity">
+                  Открыть →
+                </div>
               </div>
               <div className="flex items-baseline justify-between gap-6">
-                <h3 className="font-display text-4xl lg:text-5xl">
+                <h3 className="font-display text-4xl lg:text-5xl group-hover:text-primary transition-colors">
                   BUTA <span className="italic text-primary">{p.name}</span>
                 </h3>
                 <div className="text-right font-display text-xl text-foreground whitespace-nowrap">{p.price}</div>
@@ -191,7 +195,7 @@ function Projects() {
                 <span>{p.location}</span>
                 <span className="text-primary/80">{p.status}</span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
