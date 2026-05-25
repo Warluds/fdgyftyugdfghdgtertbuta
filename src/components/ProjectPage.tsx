@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
-import logoImg from "@/assets/buta-logo.jpg";
+import logoImg from "@/assets/buta-logo.png";
 
 const projectPaths = {
   fenomen: "/projects/fenomen",
@@ -16,7 +16,7 @@ function Nav() {
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/60 border-b border-border/40">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center" aria-label="BUTA Group">
-          <img src={logoImg} alt="BUTA Group" className="h-10 w-auto mix-blend-multiply" />
+          <img src={logoImg} alt="BUTA Group" className="h-10 w-auto" />
         </Link>
         <nav className="hidden md:flex items-center gap-10 text-sm text-foreground/80">
           <Link to="/" hash="projects" className="hover:text-primary transition-colors">Проекты</Link>
@@ -211,7 +211,7 @@ export function ProjectPage({ project }: { project: Project }) {
       <footer className="border-t border-border py-12">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest text-muted-foreground">
           <div className="flex items-center gap-3">
-            <img src={logoImg} alt="BUTA Group" className="h-8 w-auto mix-blend-multiply" />
+            <img src={logoImg} alt="BUTA Group" className="h-8 w-auto" />
             <span>est. 2014</span>
           </div>
           <div>© 2026 BUTA Group. Все права защищены.</div>
