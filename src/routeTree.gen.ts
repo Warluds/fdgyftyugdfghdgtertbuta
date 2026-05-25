@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsLegendRouteImport } from './routes/projects.legend'
 import { Route as ProjectsFenomenRouteImport } from './routes/projects.fenomen'
 import { Route as ProjectsAlbionRouteImport } from './routes/projects.albion'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsLegendRoute = ProjectsLegendRouteImport.update({
+  id: '/projects/legend',
+  path: '/projects/legend',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsFenomenRoute = ProjectsFenomenRouteImport.update({
@@ -33,30 +39,39 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/projects/albion': typeof ProjectsAlbionRoute
   '/projects/fenomen': typeof ProjectsFenomenRoute
+  '/projects/legend': typeof ProjectsLegendRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/projects/albion': typeof ProjectsAlbionRoute
   '/projects/fenomen': typeof ProjectsFenomenRoute
+  '/projects/legend': typeof ProjectsLegendRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/projects/albion': typeof ProjectsAlbionRoute
   '/projects/fenomen': typeof ProjectsFenomenRoute
+  '/projects/legend': typeof ProjectsLegendRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects/albion' | '/projects/fenomen'
+  fullPaths: '/' | '/projects/albion' | '/projects/fenomen' | '/projects/legend'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects/albion' | '/projects/fenomen'
-  id: '__root__' | '/' | '/projects/albion' | '/projects/fenomen'
+  to: '/' | '/projects/albion' | '/projects/fenomen' | '/projects/legend'
+  id:
+    | '__root__'
+    | '/'
+    | '/projects/albion'
+    | '/projects/fenomen'
+    | '/projects/legend'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProjectsAlbionRoute: typeof ProjectsAlbionRoute
   ProjectsFenomenRoute: typeof ProjectsFenomenRoute
+  ProjectsLegendRoute: typeof ProjectsLegendRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +81,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/legend': {
+      id: '/projects/legend'
+      path: '/projects/legend'
+      fullPath: '/projects/legend'
+      preLoaderRoute: typeof ProjectsLegendRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/fenomen': {
@@ -89,6 +111,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProjectsAlbionRoute: ProjectsAlbionRoute,
   ProjectsFenomenRoute: ProjectsFenomenRoute,
+  ProjectsLegendRoute: ProjectsLegendRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
