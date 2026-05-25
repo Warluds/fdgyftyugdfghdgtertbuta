@@ -63,6 +63,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --font-display: 'Cormorant Garamond', serif;
   --font-sans: 'Inter', sans-serif;
+  --color-parchment: var(--parchment);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-navy-deep: var(--navy-deep);
 }
 
 :root {
