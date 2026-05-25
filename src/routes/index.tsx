@@ -17,7 +17,7 @@ const projectPaths = {
 
 function Nav() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/40 border-b border-border/40">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[hsl(var(--navy-deep))]/80 border-b border-white/10">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
         <a href="#" className="flex items-center" aria-label="BUTA Group">
           <img src={logoImg} alt="BUTA Group" className="h-10 w-auto" />
@@ -276,7 +276,7 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border py-12">
+    <footer className="border-t border-white/10 py-12 bg-[hsl(var(--navy-deep))] text-white/70">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest text-muted-foreground">
         <div className="flex items-center gap-3">
           <img src={logoImg} alt="BUTA Group" className="h-8 w-auto" />
